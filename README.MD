@@ -1,3 +1,7 @@
+To run the solution
+1. Make sure node is installed onto your machine
+2. Then run node index.js
+
 Small Stats API
 ====
 
