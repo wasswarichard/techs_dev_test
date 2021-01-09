@@ -1,9 +1,20 @@
-Running the script
+Running the script  Docker
+====
+1. docker build -t node-docker .
+2. docker run -it -p 9000:3000 node-docker
+// The api is now running on  http://localhost:9000
+
+Running the script without Docker
 ====
 1. Install nodejs on your machine
 2. run install npm and run npm i to install the dependencies
 2. Then run node index.js
-3. The server should be running on the local machine with port 3000.
+// The api is now running on  http://localhost:3000
+
+
+Running the Testing the app running on http://localhost:3000
+====
+The server should be running on the local machine with port 3000.
    Results:
    1. Get Count the number of unique recipe name
        API:  http://localhost:3000/api/unique/recipe/count
