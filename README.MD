@@ -1,3 +1,168 @@
+Running the script  Docker
+====
+1. docker build -t node-docker .
+2. docker run -it -p 9000:3000 node-docker
+// The api is now running on  http://localhost:9000
+
+Running the script without Docker
+====
+1. Install nodejs on your machine
+2. run install npm and run npm i to install the dependencies
+2. Then run node index.js
+// The api is now running on  http://localhost:3000
+
+
+Running the Testing the app running on http://localhost:3000
+====
+The server should be running on the local machine with port 3000.
+   Results:
+   1. Get Count the number of unique recipe name
+       API:  http://localhost:3000/api/unique/recipe/count
+       Expected Output : ```json5
+                             {
+                                 "unique_recipe_count": 30
+                             }
+                         ```
+   2. Count the number of occurences for each unique recipe name.
+       API:  http://localhost:3000/api/count/per/recipe
+       Expected Output : ```json5
+                             {
+                               "count_per_recipe": [
+                                 {
+                                   "recipe": "Creamy Dill Chicken",
+                                   "count": 4
+                                 },
+                                 {
+                                   "recipe": "Speedy Steak Fajitas",
+                                   "count": 6
+                                 },
+                                 {
+                                   "recipe": "Cherry Balsamic Pork Chops",
+                                   "count": 3
+                                 },
+                                 {
+                                   "recipe": "Hot Honey Barbecue Chicken Legs",
+                                   "count": 3
+                                 },
+                                 {
+                                   "recipe": "Tex-Mex Tilapia",
+                                   "count": 1
+                                 },
+                                 {
+                                   "recipe": "One-Pan Orzo Italiano",
+                                   "count": 2
+                                 },
+                                 {
+                                   "recipe": "Chicken Sausage Pizzas",
+                                   "count": 5
+                                 },
+                                 {
+                                   "recipe": "Spanish One-Pan Chicken",
+                                   "count": 3
+                                 },
+                                 {
+                                   "recipe": "Grilled Cheese and Veggie Jumble",
+                                   "count": 4
+                                 },
+                                 {
+                                   "recipe": "Melty Monterey Jack Burgers",
+                                   "count": 4
+                                 },
+                                 {
+                                   "recipe": "Korean-Style Chicken Thighs",
+                                   "count": 4
+                                 },
+                                 {
+                                   "recipe": "Spinach Artichoke Pasta Bake",
+                                   "count": 8
+                                 },
+                                 {
+                                   "recipe": "Garden Quesadillas",
+                                   "count": 2
+                                 },
+                                 {
+                                   "recipe": "Garlic Herb Butter Steak",
+                                   "count": 3
+                                 },
+                                 {
+                                   "recipe": "Mediterranean Baked Veggies",
+                                   "count": 4
+                                 },
+                                 {
+                                   "recipe": "Parmesan-Crusted Pork Tenderloin",
+                                   "count": 3
+                                 },
+                                 {
+                                   "recipe": "Steakhouse-Style New York Strip",
+                                   "count": 4
+                                 },
+                                 {
+                                   "recipe": "Chicken Pineapple Qwzza",
+                                   "count": 1
+                                 },
+                                 {
+                                   "recipe": "Yellow Squash Flatbreads",
+                                   "count": 5
+                                 },
+                                 {
+                                   "recipe": "Cajun-Spiced Pulled Pork",
+                                   "count": 5
+                                 },
+                                 {
+                                   "recipe": "Sweet Apple Pork Tenderloin",
+                                   "count": 4
+                                 },
+                                 {
+                                   "recipe": "Meatloaf à La Mom",
+                                   "count": 3
+                                 },
+                                 {
+                                   "recipe": "Chicken Pineapple Quesadillas",
+                                   "count": 1
+                                 },
+                                 {
+                                   "recipe": "Honey Sesame Chicken",
+                                   "count": 3
+                                 },
+                                 {
+                                   "recipe": "Creamy Shrimp Tagliatelle",
+                                   "count": 4
+                                 },
+                                 {
+                                   "recipe": "Hearty Pork Chili",
+                                   "count": 4
+                                 },
+                                 {
+                                   "recipe": "Stovetop Mac 'N' Cheese",
+                                   "count": 1
+                                 },
+                                 {
+                                   "recipe": "Cheesy Chicken Enchilada Bake",
+                                   "count": 2
+                                 },
+                                 {
+                                   "recipe": "Mole-Spiced Beef Tacos",
+                                   "count": 3
+                                 },
+                                 {
+                                   "recipe": "One-Pan Orzo Italianxxx",
+                                   "count": 1
+                                 }
+                               ]
+                             }
+                         ```
+   3.  Find the postcode with most delivered recipes.
+            API : http://localhost:3000/api/busiest/postcode
+            Expected Output : ```json5
+                                  {"busiest_postcode":{"postcode":["10216"],"delivery_count":5}}
+                              ```
+   
+   4.   List the recipe names (alphabetically ordered) that contain in their name one of the following words: Potato, Veggie , Mushroom
+            Example
+            API : http://localhost:3000/api/match/name/veggie
+            Expected Output : ```json5
+                                  ["Grilled Cheese and Veggie Jumble","Mediterranean Baked Veggies","Mediterranean Baked Veggies","Mediterranean Baked Veggies","Grilled Cheese and Veggie Jumble","Grilled Cheese and Veggie Jumble","Grilled Cheese and Veggie Jumble","Mediterranean Baked Veggies","Grilled Cheese and Veggie Jumble","Mediterranean Baked Veggies","Mediterranean Baked Veggies","Mediterranean Baked Veggies","Grilled Cheese and Veggie Jumble","Grilled Cheese and Veggie Jumble","Grilled Cheese and Veggie Jumble","Mediterranean Baked Veggies"]
+                              ```
 Small Stats API
 ====
 
