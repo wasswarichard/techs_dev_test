@@ -1,6 +1,7 @@
+const express = require('express');
+const  app = express();
 const fs =  require('fs');
 const data = require('./data.json');
-// const data = JSON.parse(fs.readFileSync('./data.json', "utf-8"));
 
 /**
  implementing writing to a json file
@@ -28,7 +29,11 @@ const uniqueRecipeNames = data.reduce((accumulatorumulator , currentValue) => {
 const uniqueRecipeCount = {
     'unique_recipe_count' : uniqueRecipeNames.length
 }
-writeToFile('unique_recipe_count.json', uniqueRecipeCount);
+app.get('/api/unique/recipe/count', (req, res) => {
+    writeToFile('unique_recipe_count.json', uniqueRecipeCount);
+    res.send(uniqueRecipeCount);
+});
+
 
 /**
  implementing Count the number of occurences for each unique recipe name and writing to a json file
@@ -47,8 +52,10 @@ uniqueRecipeNames.forEach(uniqueRecipeName => {
 const countPerRecipe =  {
     "count_per_recipe": count_per_recipe
 }
-writeToFile('count_per_recipe.json', countPerRecipe);
-
+app.get('/api/count/per/recipe', (req, res) => {
+    writeToFile('count_per_recipe.json', countPerRecipe);
+    res.send(countPerRecipe);
+});
 
 /**
  implementing Find the postcode with most delivered recipes and writing to a json file
@@ -69,41 +76,38 @@ const busiest_postcode = {
         "delivery_count" : mostDeliveredPostCodeCount
     }
 }
-writeToFile('busiest_postcode.json', busiest_postcode);
-
-
-/**
- List the recipe names (alphabetically ordered) that contain in their name one of the following words:
- Potato
- Veggie
- Mushroom and writing to a json file
- */
+app.get('/api/busiest/postcode', (req, res) => {
+    writeToFile('busiest_postcode.json', busiest_postcode);
+    res.send(busiest_postcode);
+});
 
 const recipeNamesArray = [];
 data.forEach(recipeName => {
     recipeNamesArray.push(recipeName.recipe)
 });
-const sortedSearchPotatoResult = [];
-recipeNamesArray.forEach(name => {
-    if (name.includes('potato')){
-        sortedSearchPotatoResult.push(name)
+let sortedSearchResults = [];
+const matchByName = (searchParam) => recipeNamesArray.forEach(name => {
+    if (name.includes(searchParam)){
+        sortedSearchResults.push(name)
+
     }
 });
-const sortedSearchVeggieResult = [];
-recipeNamesArray.forEach(name => {
-    if (name.includes('Veggie')){
-        sortedSearchVeggieResult.push(name)
-    }
+app.get('/api/match/name/potato', (req , res) => {
+    const searchParam = 'potato';
+    matchByName(searchParam);
+    res.send(sortedSearchResults);
 });
-const sortedSearchMushroomResult = [];
-recipeNamesArray.forEach(name => {
-    if (name.includes('Mushroom')){
-        sortedSearchMushroomResult.push(name)
-    }
+app.get('/api/match/name/veggie', (req , res) => {
+    const searchParam = 'Veggie';
+    matchByName(searchParam);
+    res.send(sortedSearchResults);
 });
-const match_by_name =  {
-    "potato" : sortedSearchPotatoResult,
-    "veggie" : sortedSearchVeggieResult,
-    "mushroom" : sortedSearchMushroomResult
-}
-writeToFile('match_by_name.json', match_by_name);
+app.get('/api/match/name/mushroom', (req , res) => {
+    const searchParam = 'Mushroom';
+    matchByName(searchParam);
+    res.send(sortedSearchResults);
+});
+
+const port = process.env.PORT || 3000;
+const hostname = 'localhost';
+app.listen(port, () => console.log(`Backend Server running on port http://${hostname}:${port} ...`))
