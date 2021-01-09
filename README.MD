@@ -1,4 +1,4 @@
-Running the application
+Running the script
 ====
 1. Install nodejs on your machine
 2. run install npm and run npm i to install the dependencies
